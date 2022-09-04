@@ -8,6 +8,6 @@ public class InstagramApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(InstagramApplication.class, args);
-	}
 
+	}
 }

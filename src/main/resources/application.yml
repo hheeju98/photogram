@@ -8,8 +8,8 @@ server:
 spring:
   mvc:
     view:
-      prefix: /WEB-INF/views/
-      suffix: .jsp
+      prefix: /WEB-INF/views/ # 요청 경로 지정
+      suffix: .jsp #해당 경로에 있는 .jsp파일로 응답할 것.
 
 
   datasource:
@@ -25,8 +25,14 @@ spring:
       naming:
         physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
     show-sql: true
-    properties:
-      hibernate.format_sql: true
+    
+
+
+
+  servlet:
+    multipart: 
+      enabled: true
+      max-file-size: 2MB # 파일의 사이즈 제한
 
   output:
     ansi:
