@@ -1,11 +1,15 @@
 package site.metacoding.instagram.web.dto.user;
 
+import javax.validation.constraints.NotBlank;
+
 import lombok.Data;
 import site.metacoding.instagram.domain.user.User;
 
 @Data
 public class UserUpdateDto {
+    @NotBlank
     private String name; // 필수
+    @NotBlank
     private String password; // 필수
     private String website;
     private String bio;
