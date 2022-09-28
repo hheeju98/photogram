@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 
 import lombok.RequiredArgsConstructor;
 import site.metacoding.instagram.domain.subscribe.SubscribeRepository;
+import site.metacoding.instagram.handler.ex.CustomApiException;
 
 @RequiredArgsConstructor
 @Service
@@ -15,7 +16,11 @@ public class SubscribeService {
 
     @Transactional // insert, delete를 통해 디비에 영향을 준다.
     public void 구독하기(int fromUserId, int toUserId) {
-        subscribeRepository.mSubscribe(fromUserId, toUserId);
+        try {
+            subscribeRepository.mSubscribe(fromUserId, toUserId);
+        } catch (Exception e) {
+            throw new CustomApiException("이미 구독을 하였습니다.");
+        }
     }
 
     @Transactional
