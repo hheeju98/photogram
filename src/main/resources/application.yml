@@ -25,10 +25,6 @@ spring:
       naming:
         physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
     show-sql: true
-    
-
-
-
 
   servlet:
     multipart: 
@@ -39,4 +35,6 @@ spring:
     ansi:
       enabled: always
 
+file:
+  path: C:/workspace/springbootwork/upload/
      
