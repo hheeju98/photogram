@@ -21,7 +21,7 @@ import site.metacoding.instagram.domain.user.User;
 @NoArgsConstructor
 @Data
 @Entity
-public class image { // N , 1
+public class Image { // N , 1
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY) // 번호 증가 전략이 데이터베이스를 따라간다.
     private int id;

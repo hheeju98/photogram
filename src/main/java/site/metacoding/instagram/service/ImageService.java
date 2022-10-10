@@ -10,14 +10,15 @@ import org.springframework.stereotype.Service;
 
 import lombok.RequiredArgsConstructor;
 import site.metacoding.instagram.config.auth.PrincipalDetails;
-import site.metacoding.instagram.domain.image.imageRepository;
+import site.metacoding.instagram.domain.image.Image;
+import site.metacoding.instagram.domain.image.ImageRepository;
 import site.metacoding.instagram.web.dto.image.imageUploadDto;
 
 @RequiredArgsConstructor
 @Service
 public class ImageService {
 
-    private final imageRepository imageRepository;
+    private final ImageRepository imageRepository;
     // private String uploadFolder= "C:/workspace/springbootwork/upload/";
 
     @Value("${file.path}")
@@ -36,5 +37,11 @@ public class ImageService {
         } catch (Exception e) {
             e.printStackTrace();
         }
+
+        // image 테이블에 저장
+        Image image = imageUploadDto.toEntity(imageFileName, principalDetails.getUser());
+        Image imageEntity = imageRepository.save(image);
+
+        System.out.println(imageEntity);
     }
 }
