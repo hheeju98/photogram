@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 import lombok.RequiredArgsConstructor;
 import site.metacoding.instagram.config.auth.PrincipalDetails;
+import site.metacoding.instagram.handler.ex.CustomValidationException;
 import site.metacoding.instagram.service.ImageService;
 import site.metacoding.instagram.web.dto.image.imageUploadDto;
 
@@ -34,6 +35,11 @@ public class ImageController {
     @PostMapping("/image")
     public String imageUpload(imageUploadDto imageUploadDto,
             @AuthenticationPrincipal PrincipalDetails principalDetails) {
+
+        if (imageUploadDto.getFile().isEmpty()) {
+            System.out.println("이미지가 첨부되지 않았습니다.");
+            throw new CustomValidationException("이미지가 첨부되지 않았습니다.", null);
+        }
         // 서비스 호출
         imageService.사진업로드(imageUploadDto, principalDetails);
         return "redirect:/user/" + principalDetails.getUser().getId();
