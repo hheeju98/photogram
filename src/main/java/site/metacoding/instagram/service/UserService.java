@@ -9,6 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 import lombok.RequiredArgsConstructor;
 import site.metacoding.instagram.domain.user.User;
 import site.metacoding.instagram.domain.user.UserRepository;
+import site.metacoding.instagram.handler.ex.CustomException;
 import site.metacoding.instagram.handler.ex.CustomValidationApiException;
 
 @RequiredArgsConstructor
@@ -17,6 +18,16 @@ public class UserService {
 
     private final UserRepository userRepository;
     private final BCryptPasswordEncoder bCryptPasswordEncoder;
+
+    public User 회원프로필(int userId) { // 해당페이지 주인의 아이디 받음
+        // SELECT * FROM image WHERE userId = :userId;
+        User userEntity = userRepository.findById(userId).orElseThrow(() -> {
+            throw new CustomException("해당 프로필 페이지는 없는 페이지입니다.");
+        });
+        System.out.println("==========");
+        userEntity.getImages().get(0);
+        return userEntity;
+    }
 
     @Transactional
     public User 회원수정(int id, User user) {

@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestController;
 
 import site.metacoding.instagram.handler.ex.CustomApiException;
+import site.metacoding.instagram.handler.ex.CustomException;
 import site.metacoding.instagram.handler.ex.CustomValidationApiException;
 import site.metacoding.instagram.handler.ex.CustomValidationException;
 import site.metacoding.instagram.util.Script;
@@ -31,6 +32,11 @@ public class ControllerExceptionHandler {
         } else {
             return Script.back(e.getErrorMap().toString());
         }
+    }
+
+    @ExceptionHandler(CustomException.class)
+    public String exception(CustomException e) {
+        return Script.back(e.getMessage());
     }
 
     @ExceptionHandler(CustomValidationApiException.class)
