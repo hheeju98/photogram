@@ -7,7 +7,7 @@ import site.metacoding.instagram.domain.image.Image;
 import site.metacoding.instagram.domain.user.User;
 
 @Data
-public class imageUploadDto {
+public class ImageUploadDto {
     private MultipartFile file;
     private String caption;
 

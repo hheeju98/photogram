@@ -11,6 +11,7 @@ import site.metacoding.instagram.domain.user.User;
 import site.metacoding.instagram.domain.user.UserRepository;
 import site.metacoding.instagram.handler.ex.CustomException;
 import site.metacoding.instagram.handler.ex.CustomValidationApiException;
+import site.metacoding.instagram.web.dto.user.UserProfileDto;
 
 @RequiredArgsConstructor
 @Service
@@ -19,12 +20,19 @@ public class UserService {
     private final UserRepository userRepository;
     private final BCryptPasswordEncoder bCryptPasswordEncoder;
 
-    public User 회원프로필(int userId) { // 해당페이지 주인의 아이디 받음
+    @Transactional(readOnly = true)
+    public UserProfileDto 회원프로필(int pageUserId, int principalId) { // 해당페이지 주인의 아이디 받음
+        UserProfileDto dto = new UserProfileDto();
+
         // SELECT * FROM image WHERE userId = :userId;
-        User userEntity = userRepository.findById(userId).orElseThrow(() -> {
+        User userEntity = userRepository.findById(pageUserId).orElseThrow(() -> {
             throw new CustomException("해당 프로필 페이지는 없는 페이지입니다.");
         });
-        return userEntity;
+
+        dto.setUser(userEntity);
+        dto.setPageOwnerState(pageUserId == principalId);
+        dto.setImageCount(userEntity.getImages().size());
+        return dto;
     }
 
     @Transactional
