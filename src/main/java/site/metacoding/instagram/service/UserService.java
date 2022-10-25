@@ -1,7 +1,5 @@
 package site.metacoding.instagram.service;
 
-import java.util.function.Supplier;
-
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -21,7 +19,7 @@ public class UserService {
     private final BCryptPasswordEncoder bCryptPasswordEncoder;
 
     @Transactional(readOnly = true)
-    public UserProfileDto 회원프로필(int pageUserId, int principalId) { // 해당페이지 주인의 아이디 받음
+    public UserProfileDto 회원프로필(int pageUserId, int principalId) {
         UserProfileDto dto = new UserProfileDto();
 
         // SELECT * FROM image WHERE userId = :userId;
@@ -32,18 +30,19 @@ public class UserService {
         dto.setUser(userEntity);
         dto.setPageOwnerState(pageUserId == principalId);
         dto.setImageCount(userEntity.getImages().size());
+
         return dto;
     }
 
     @Transactional
     public User 회원수정(int id, User user) {
         // 1. 영속화
-        // 1. 무조건 찾았다 get() 2. 못찾았다 exception 발동 orElseThrow()
+        // 1. 무조건 찾았다. 걱정마 get() 2. 못찾았어 익섹션 발동시킬께 orElseThrow()
         User userEntity = userRepository.findById(id).orElseThrow(() -> {
             return new CustomValidationApiException("찾을 수 없는 id입니다.");
         });
 
-        // 2.영속화된 오브젝트를 수정 - 더티체킹(업데이트 완료)
+        // 2. 영속화된 오브젝트를 수정 - 더티체킹 (업데이트 완료)
         userEntity.setName(user.getName());
 
         String rawPassword = user.getPassword();
@@ -56,4 +55,5 @@ public class UserService {
         userEntity.setGender(user.getGender());
         return userEntity;
     } // 더티체킹이 일어나서 업데이트가 완료됨.
+
 }

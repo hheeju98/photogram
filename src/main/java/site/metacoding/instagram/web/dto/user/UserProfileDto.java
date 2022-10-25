@@ -11,7 +11,7 @@ import site.metacoding.instagram.domain.user.User;
 @NoArgsConstructor
 @Data
 public class UserProfileDto {
-    private boolean PageOwnerState;
+    private boolean pageOwnerState;
     private int imageCount;
     private User user;
 }

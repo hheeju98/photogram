@@ -29,8 +29,8 @@ dependencies {
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	implementation 'org.apache.tomcat.embed:tomcat-embed-jasper'
 	implementation 'org.springframework.boot:spring-boot-starter-security'
-    implementation group: 'org.springframework.boot', name: 'spring-boot-starter-validation', version: '2.4.4'
-    implementation group: 'javax.servlet', name: 'jstl', version: '1.2'
+    implementation group: 'org.springframework.boot', name: 'spring-boot-starter-validation'
+    implementation group: 'javax.servlet', name: 'jstl'
 	implementation group: 'org.springframework.security', name: 'spring-security-taglibs'
 
 

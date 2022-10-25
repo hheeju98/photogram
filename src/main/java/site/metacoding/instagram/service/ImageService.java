@@ -20,16 +20,15 @@ import site.metacoding.instagram.web.dto.image.ImageUploadDto;
 public class ImageService {
 
     private final ImageRepository imageRepository;
-    // private String uploadFolder= "C:/workspace/springbootwork/upload/";
 
     @Value("${file.path}")
     private String uploadFolder;
 
     @Transactional
     public void 사진업로드(ImageUploadDto imageUploadDto, PrincipalDetails principalDetails) {
-        UUID uuid = UUID.randomUUID();
+        UUID uuid = UUID.randomUUID(); // uuid
         String imageFileName = uuid + "_" + imageUploadDto.getFile().getOriginalFilename(); // 1.jpg
-        System.out.println("이미지 파일 이름 :" + imageFileName);
+        System.out.println("이미지 파일이름 : " + imageFileName);
 
         Path imageFilePath = Paths.get(uploadFolder + imageFileName);
 
@@ -41,9 +40,7 @@ public class ImageService {
         }
 
         // image 테이블에 저장
-        Image image = imageUploadDto.toEntity(imageFileName, principalDetails.getUser());
+        Image image = imageUploadDto.toEntity(imageFileName, principalDetails.getUser()); // 5cf6237d-c404-43e5-836b-e55413ed0e49_bag.jpeg
         imageRepository.save(image);
-
-        // System.out.println(imageEntity);
     }
 }
