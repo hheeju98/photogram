@@ -32,8 +32,6 @@ dependencies {
     implementation group: 'org.springframework.boot', name: 'spring-boot-starter-validation'
     implementation group: 'javax.servlet', name: 'jstl'
 	implementation group: 'org.springframework.security', name: 'spring-security-taglibs'
-
-
 }
 
 tasks.named('test') { 

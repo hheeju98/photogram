@@ -20,19 +20,14 @@ public class PrincipalDetails implements UserDetails {
         this.user = user;
     }
 
-    // 권한 : 한개가 아닐 수 s있음. (3개 이상의 권한)
+    // 권한 : 한개가 아닐 수 있음. (3개 이상의 권한)
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-
         Collection<GrantedAuthority> collector = new ArrayList<>();
         collector.add(() -> {
             return user.getRole();
         });
         return collector;
-    }
-
-    public static long getSerialversionuid() {
-        return serialVersionUID;
     }
 
     @Override
