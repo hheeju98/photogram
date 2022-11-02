@@ -80,7 +80,7 @@ function getSubscribeModalItem(u) {
 </div>`;
 
 	console.log(item);
-	return item;
+	return item; 
 }
 
 // (3) 유저 프로파일 사진 변경 (완)
