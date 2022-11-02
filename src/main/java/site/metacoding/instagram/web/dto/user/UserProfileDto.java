@@ -12,8 +12,8 @@ import site.metacoding.instagram.domain.user.User;
 @Data
 public class UserProfileDto {
     private boolean pageOwnerState;
-    private int imageCount;
+    private Integer imageCount;
     private boolean subscribeState;
-    private int subscribeCount;
+    private Integer subscribeCount;
     private User user;
 }

@@ -10,7 +10,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Data
 public class SubscribeDto {
-    private int userId;
+    private Integer id;
     private String username;
     private String profileImageUrl;
     private Integer subscribeState;

@@ -29,7 +29,7 @@ import site.metacoding.instagram.domain.image.Image;
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY) // 번호 증가 전략이 데이터베이스를 따라간다.
-    private int id;
+    private Integer id;
 
     @Column(length = 20, unique = true)
     private String username;

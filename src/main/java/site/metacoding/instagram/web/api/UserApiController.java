@@ -34,7 +34,7 @@ public class UserApiController {
     private final SubscribeService subscribeService;
 
     @GetMapping("/api/user/1/{pageUserId}/subscribe")
-    public ResponseEntity<?> subscribeList(@PathVariable int pageUserId,
+    public ResponseEntity<?> subscribeList(@PathVariable Integer pageUserId,
             @AuthenticationPrincipal PrincipalDetails principalDetails) {
 
         List<SubscribeDto> subscribeDto = subscribeService.구독리스트(principalDetails.getUser().getId(), pageUserId);
@@ -44,7 +44,7 @@ public class UserApiController {
 
     @PutMapping("/api/user/{id}")
     public CMRespDto<?> update(
-            @PathVariable int id,
+            @PathVariable Integer id,
             @Valid UserUpdateDto userUpdateDto,
             BindingResult bindingResult, // 꼭 @Valid가 적혀있는 다음 파라메터에 적어야됨
             @AuthenticationPrincipal PrincipalDetails principalDetails) {

@@ -21,7 +21,7 @@ public class UserService {
     private final BCryptPasswordEncoder bCryptPasswordEncoder;
 
     @Transactional(readOnly = true)
-    public UserProfileDto 회원프로필(int pageUserId, int principalId) {
+    public UserProfileDto 회원프로필(Integer pageUserId, Integer principalId) {
         UserProfileDto dto = new UserProfileDto();
 
         // SELECT * FROM image WHERE userId = :userId;
@@ -33,8 +33,8 @@ public class UserService {
         dto.setPageOwnerState(pageUserId == principalId);
         dto.setImageCount(userEntity.getImages().size());
 
-        int subscribeState = subscribeRepository.mSubscribeState(principalId, pageUserId);
-        int subscribeCount = subscribeRepository.mSubscribeCount(pageUserId);
+        Integer subscribeState = subscribeRepository.mSubscribeState(principalId, pageUserId);
+        Integer subscribeCount = subscribeRepository.mSubscribeCount(pageUserId);
 
         dto.setSubscribeState(subscribeState == 1);
         dto.setSubscribeCount(subscribeCount);
@@ -43,7 +43,7 @@ public class UserService {
     }
 
     @Transactional
-    public User 회원수정(int id, User user) {
+    public User 회원수정(Integer id, User user) {
         // 1. 영속화
         // 1. 무조건 찾았다. 걱정마 get() 2. 못찾았어 익섹션 발동시킬께 orElseThrow()
         User userEntity = userRepository.findById(id).orElseThrow(() -> {
